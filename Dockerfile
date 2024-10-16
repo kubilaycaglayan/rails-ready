@@ -27,7 +27,7 @@ WORKDIR /app
 
 # Copy the Gemfile and Gemfile.lock
 COPY Gemfile /app/Gemfile
-# COPY Gemfile.lock /app/Gemfile.lock
+COPY Gemfile.lock /app/Gemfile.lock
 
 # Install Gems dependencies
 RUN gem install bundler
