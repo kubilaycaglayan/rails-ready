@@ -30,7 +30,8 @@ COPY Gemfile /app/Gemfile
 # COPY Gemfile.lock /app/Gemfile.lock
 
 # Install Gems dependencies
-RUN gem install bundler && bundle install
+RUN gem install bundler
+RUN bundle install --jobs 12
 
 # Copy the application code
 COPY . /app
