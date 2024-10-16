@@ -1,0 +1,41 @@
+services:
+  web:
+    container_name: rails_ready_web
+    build: .
+    command: >
+      bash -c "bundle install && bundle exec rails s -b '0.0.0.0'"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+      - rabbitmq
+    environment:
+      DATABASE_URL: postgres://postgres:password@database:5432
+    volumes:
+      - .:/app
+      - bundle_cache:/app/vendor/bundle
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: rails_ready_development
+      POSTGRES_HOST: localhost
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  rabbitmq:
+    image: rabbitmq:4.0.2-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: password
+      RABBITMQ_DEFAULT_VHOST: vhost
+
+volumes:
+  postgres_data:
+  bundle_cache:
+

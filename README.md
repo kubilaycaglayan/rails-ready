@@ -1,24 +1,16 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- https://github.com/maybe-finance/maybe/pull/293/files
+- https://docs.docker.com/guides/ruby/containerize/
 
-Things you may want to cover:
+```shell
+docker compose up --build
+```
 
-* Ruby version
+- visit :3000
 
-* System dependencies
+### Run rails commands with
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```shell
+  d/rails g scaffold User name:string email:string
+```
