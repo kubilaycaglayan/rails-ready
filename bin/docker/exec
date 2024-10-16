@@ -1,0 +1,7 @@
+#!/bin/bash
+
+exec docker exec \
+  -it \
+  -w '/app' \
+  rails_ready_web \
+  "$@"
