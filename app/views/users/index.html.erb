@@ -4,13 +4,36 @@
 
 <h1>Users</h1>
 
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
-</div>
+<% if is_admin? %>
+  <%= link_to "New user", new_user_path %>
+<% end %>
 
-<%= link_to "New user", new_user_registration_path %>
+
+<div id="users">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td>
+            <%= link_to "Show", user %>
+            <% if is_admin? %>
+              <%= link_to "Edit", edit_user_path(user) %>
+              <%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

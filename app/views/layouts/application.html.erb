@@ -19,13 +19,11 @@
 
   <body>
     <% if current_user %>
-      <h2>Welcome, <%= current_user.name %></h2>
-    <% else %>
-      <h2>Auth required</h2>
+      <h2>Welcome, <%= current_user.name %> <%= "🌟" if is_admin? %> </h2>
     <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= button_to 'Sign out', destroy_user_session_path, { :method => 'delete' } %>
+    <%= (button_to 'Sign out', destroy_user_session_path, { :method => 'delete' }) if current_user %>
     <%= yield %>
   </body>
 </html>
