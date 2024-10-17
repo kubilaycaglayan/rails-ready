@@ -18,6 +18,11 @@
   </head>
 
   <body>
+    <% if current_user %>
+      <h2>Welcome, <%= current_user.name %></h2>
+    <% else %>
+      <h2>Auth required</h2>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= button_to 'Sign out', destroy_user_session_path, { :method => 'delete' } %>
