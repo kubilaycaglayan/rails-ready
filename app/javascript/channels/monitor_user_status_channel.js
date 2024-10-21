@@ -31,3 +31,4 @@ consumer.subscriptions.create("MonitorUserStatusChannel", {
     }
   }
 });
+

@@ -4,18 +4,20 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
+      logger.info "🟢 -- connect"
       self.current_user = find_verified_user
     end
 
+    def disconnect
+      logger.info "🔴 -- disconnect"
+      self.current_user = nil
+    end
+
+
     private
     def find_verified_user
-      return unless cookies.encrypted[:_rails_ready_session]["warden.user.user.key"]
-
-      current_user_id ||= cookies.encrypted[:_rails_ready_session]["warden.user.user.key"][0][0]
-      verified_user = User.find_by(id: current_user_id)
-
-      if verified_user
-        verified_user
+      if (user = env["warden"].user)
+        User.find_by(id: user.id) || reject_unauthorized_connection
       else
         reject_unauthorized_connection
       end
