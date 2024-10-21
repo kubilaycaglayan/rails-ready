@@ -9,20 +9,21 @@ class UserStatus < ApplicationRecord
     statuses = User.includes(:user_statuses).all.map do |user|
       user_status = user.user_statuses.first
 
-      { user_id: user.id, status: user_status&.status_to_emoji }
+      { user_id: user.id, status: user_status&.status_to_emoji || "--" }
     end
 
     ActionCable.server.broadcast "monitor_user_status_channel", { statuses: statuses }
   end
 
   def status_to_emoji
-    case status
-    when "online"
+    if status == "online" && created_at > 10.seconds.ago
       "🟢"
-    when "away"
+    elsif status == "online"
       "🟡"
+    elsif status == "away"
+      "⏹️"
     else
-      "◻️"
+      "--"
     end
   end
 end

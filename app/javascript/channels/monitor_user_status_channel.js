@@ -2,7 +2,7 @@ import consumer from "channels/consumer"
 
 consumer.subscriptions.create("MonitorUserStatusChannel", {
   rejected() {
-    console.log("rejected from monitoring")
+    console.log("rejected from monitoring and ending")
   },
 
   connected() {
