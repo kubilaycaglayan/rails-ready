@@ -24,12 +24,12 @@ consumer.subscriptions.create("AppearanceChannel", {
   },
 
   update() {
-    this.documentIsActive ? this.appear() : this.away()
+    this.documentIsActive() ? this.appear() : this.away()
   },
 
   appear() {
     // Calls `AppearanceChannel#appear(data)` on the server.
-    this.perform("appear", { appearing_on: this.appearingOn })
+    this.perform("appear")
   },
 
   away() {
@@ -51,12 +51,7 @@ consumer.subscriptions.create("AppearanceChannel", {
     document.removeEventListener("visibilitychange", this.update)
   },
 
-  get documentIsActive() {
+  documentIsActive() {
     return document.visibilityState === "visible" && document.hasFocus()
   },
-
-  get appearingOn() {
-    const element = document.querySelector("[data-appearing-on]")
-    return element ? element.getAttribute("data-appearing-on") : null
-  }
 })

@@ -13,15 +13,20 @@
   <table>
     <thead>
       <tr>
+        <th>id</th>
         <th>Name</th>
         <th>Email</th>
         <th>Role</th>
         <th>Actions</th>
+        <% if is_admin? %>
+          <th>Monitor Status</th>
+        <% end %>
       </tr>
     </thead>
     <tbody>
       <% @users.each do |user| %>
         <tr>
+          <td><%= user.id %></td>
           <td><%= user.name %></td>
           <td><%= user.email %></td>
           <td><%= user.role %></td>
@@ -32,6 +37,10 @@
               <%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" } %>
             <% end %>
           </td>
+          <td>
+            <% if is_admin? %>
+              <div id="monitor-status-<%= user.id %>"></div>
+            <% end %>
         </tr>
       <% end %>
     </tbody>

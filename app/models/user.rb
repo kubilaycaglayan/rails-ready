@@ -22,4 +22,8 @@ class User < ApplicationRecord
   def away
     UserStatus.create(user: self, status: "away")
   end
+
+  def is_admin?
+    role == "admin"
+  end
 end
