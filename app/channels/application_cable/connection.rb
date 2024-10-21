@@ -4,15 +4,12 @@ module ApplicationCable
     identified_by :current_user
 
     def connect
-      logger.info "🟢 -- connect"
       self.current_user = find_verified_user
     end
 
     def disconnect
-      logger.info "🔴 -- disconnect"
       self.current_user = nil
     end
-
 
     private
     def find_verified_user

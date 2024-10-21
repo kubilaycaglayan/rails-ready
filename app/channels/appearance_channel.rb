@@ -4,22 +4,22 @@ class AppearanceChannel < ApplicationCable::Channel
 
   def subscribed
     puts "🟢 subscribed #{current_user.id}"
-    current_user.appear
+    UserStatus.create(user: current_user, status: "online")
   end
 
   def unsubscribed
     puts "🔥 unsubscribed #{current_user.id}"
-    current_user.disappear
+    UserStatus.create(user: current_user, status: "away")
     current_user = nil
   end
 
   def appear(data)
-    current_user.appear
+    UserStatus.create(user: current_user, status: "online")
     puts "appearRR 🟢 #{current_user.id}", data
   end
 
   def away
-    current_user.away
+    UserStatus.create(user: current_user, status: "away")
     puts "away 🟡 #{current_user.id}"
   end
 
