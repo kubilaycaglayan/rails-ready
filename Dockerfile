@@ -37,7 +37,7 @@ RUN bundle install --jobs 12
 COPY . /app
 
 # Precompile assets (optional, if using Rails with assets)
-# RUN bundle exec rake assets:precompile
+RUN bundle exec rake assets:precompile
 
 # Expose the port the app runs on
 EXPOSE 3000

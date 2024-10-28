@@ -1,0 +1,40 @@
+<% content_for :title, "New user" %>
+
+<h1>New user</h1>
+
+<%= form_with model: @user, url: admin_create_user_path, method: :post, local: true do |form| %>
+  <div>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email %><br>
+    <%= form.email_field :email, value: '@kyc.com' %>
+  </div>
+
+  <div>
+    <%= form.label :role %><br>
+    <%= form.select :role, User.available_roles %>
+  </div>
+
+  <div>
+    <%= form.label :password %><br>
+    <%= form.password_field :password, value: '000000' %>
+  </div>
+
+  <div>
+    <%= form.label :password_confirmation %><br>
+    <%= form.password_field :password_confirmation, value: '000000' %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<br>
+
+<div>
+  <%= link_to "Back to users", users_path %>
+</div>

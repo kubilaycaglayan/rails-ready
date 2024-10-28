@@ -1,0 +1,48 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Users" %>
+
+<h1>Users</h1>
+
+<% if is_admin? %>
+  <%= link_to "New user", new_user_path %>
+<% end %>
+
+
+<div id="users">
+  <table>
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+        <% if is_admin? %>
+          <th>Monitor Status</th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name %></td>
+          <td><%= user.email %></td>
+          <td><%= user.role %></td>
+          <td>
+            <%= link_to "Show", user %>
+            <% if is_admin? %>
+              <%= link_to "Edit", edit_user_path(user) %>
+              <%= link_to "Delete", user, method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+          </td>
+          <td>
+            <% if is_admin? %>
+              <div id="monitor-status-<%= user.id %>" class="monitor-status"></div>
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
