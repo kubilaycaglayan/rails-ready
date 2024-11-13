@@ -59,5 +59,5 @@ end
 
 gem 'bunny', '~> 2.23'
 gem 'logger', '~> 1.6', '>= 1.6.1'
-gem 'ostruct', '~> 0.6.0'
+gem 'ostruct', '~> 0.6.1'
 gem "devise", "~> 4.9"
