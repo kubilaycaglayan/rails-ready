@@ -57,7 +57,7 @@ group :test do
   gem "selenium-webdriver"
 end
 
-gem 'bunny', '~> 2.23'
+gem 'bunny', '~> 2.24'
 gem 'logger', '~> 1.6'
 gem 'ostruct', '~> 0.6.1'
 gem "devise", "~> 4.9"
