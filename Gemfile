@@ -58,6 +58,6 @@ group :test do
 end
 
 gem 'bunny', '~> 2.24'
-gem 'logger', '~> 1.6'
+gem 'logger', '~> 1.7'
 gem 'ostruct', '~> 0.6.1'
 gem "devise", "~> 4.9"
